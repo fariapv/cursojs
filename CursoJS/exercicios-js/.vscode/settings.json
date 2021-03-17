@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "\"powermode.enabled\"": "true"
+    },
+    "powermode.enabled": true,
+    "powermode.enableShake": false
+}

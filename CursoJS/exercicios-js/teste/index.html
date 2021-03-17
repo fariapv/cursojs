@@ -1,0 +1,107 @@
+<html>
+
+<head>
+    <title>
+        Pong
+    </title>
+</head>
+
+<style>
+
+</style>
+
+<body>
+    <!--
+        init  =f uncao 
+    -->
+    <canvas id="canvas" width="600" height="480"></canvas>
+
+    <script>
+        // javascript
+        let Settings = {
+            velocity: 50,
+            timeActiveApple: 5000,
+            width: 15
+        }
+
+        let context
+        let Canvas = {
+            //     init  = funcao 
+            _init: function () {
+                let canvas = document.getElementById("canvas")
+                context = canvas.getContext("2d")
+                // context = area q eu posso desenhar
+                Canvas.maxWidth = canvas.width
+                Canvas.maxHeight = canvas.height
+                Canvas._bg()
+
+            },
+
+            _bg: function () {
+                context.clearRect(0, 0, Canvas.maxWidth, Canvas.maxHeight)
+                context.beginPath()
+                context.fillStyle = "gray"
+                context.fillRect(0, 0, Canvas.maxWidth, Canvas.maxHeight)
+                context.closePath()
+            },
+
+            _fill() {
+                Canvas._bg()
+                for (i = 0; Snake.lenght; i++) {
+                    context.beginPath()
+                    context.fillStyle = "green"
+                    context.fillRect(Snake.body[i].x * Settings.width, Snake.body[i].y * Settings.width, Settings.width, Settings.width)
+                    context.closePath()
+
+                }
+                Snake._move()
+                Game.time += Settings.velocity
+                Apples._fill()
+                Apples._catch()
+            },
+
+        }
+
+        let Snake = {
+            length: 0,
+            direction: 0,
+            lastDirection: 0,
+            body: [],
+            //METODOS
+            _move: function () {
+                newX = Snake.body[Snake.length - 1].x
+                newY = Snake.body[Snake.length - 1].y
+
+                if (Snake.direction == 0) newY--
+                if (Snake.direction == 1) newX++
+                if (Snake.direction == 2) newY++
+                if (Snake.direction == 3) newX--
+
+                Snake.lastDirection = Snake.direction
+                for (i = 0; i < Snake.length - 1; i++) {
+                    Snake.body[i].x = Snake.body[i++].x
+                    Snake.body[i].y = Snake.body[i++].y
+                }
+
+                Snake.body[Snake.length - 1].x = newX
+                Snake.body[Snake.length - 1].y = newY
+            }
+
+        }
+
+        let Game = {
+            play: '',
+            _start: function () {
+
+            }
+        }
+        window.onload = Canvas._init
+        document.onkeydown = Jogo._controles
+
+
+    </script>
+
+
+</body>
+
+</html>
